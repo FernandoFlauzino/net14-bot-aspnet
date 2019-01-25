@@ -14,7 +14,7 @@ namespace SimpleBot.Logic
            
             SaveMessage(message);
 
-           // GetProfile(message.Id);
+            GetProfile(message.User);
 
             return $"{message.User} disse '{message.Text}";
         }
@@ -28,9 +28,18 @@ namespace SimpleBot.Logic
 
             var col = db.GetCollection<BsonDocument>("MessageSend");
 
-            var result = col.Find(Builders<BsonDocument>.Filter.Eq("Id", userId)).ToList();
+            var result = col.Find(Builders<BsonDocument>.Filter.Eq("UserName", userId)).ToList();
 
-            return new UserProfile();
+            var contador = new UserProfile
+            {
+                Contador = result.Count,
+                Id = userId
+            };
+
+
+            //falta salvar o contador
+
+            return contador;
         }
 
         UserProfile SetProfile(string userId, int contador)
