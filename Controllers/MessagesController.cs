@@ -46,20 +46,6 @@ namespace SimpleBot
 
             var message = new SimpleMessage(userFromId, userFromName, text);
 
-
-            //var client = new MongoClient();
-
-            //var db = client.GetDatabase("dbBot");
-
-            //var col = db.GetCollection<BsonDocument>("MessageSend");
-
-            //var doc = new BsonDocument() {
-            //    { "UserName", message.User },
-            //    { "TextMessage",message.Text }
-            //};
-
-            //col.InsertOne(doc);
-
             string response = g_bot.Reply(message);
 
             await ReplyUserAsync(activity, response);
